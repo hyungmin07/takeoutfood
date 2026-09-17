@@ -2,7 +2,7 @@
   "name": "takeoutfood",
   "version": "1.0.0",
   "private": true,
-  "description": "테이크아웃 음식 주문 웹앱",
+  "description": "리향 중국집 포장 주문 웹앱",
   "scripts": {
     "start": "node server.js"
   },
