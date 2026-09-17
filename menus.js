@@ -1,0 +1,58 @@
+module.exports = [
+  {
+    id: "kimbap-classic",
+    name: "원조 김밥",
+    category: "분식",
+    price: 3500,
+    description: "기본에 충실한 클래식 야채 김밥",
+  },
+  {
+    id: "kimbap-tuna",
+    name: "참치 김밥",
+    category: "분식",
+    price: 4000,
+    description: "고소한 참치마요가 듬뿍 들어간 김밥",
+  },
+  {
+    id: "tteokbokki",
+    name: "떡볶이",
+    category: "분식",
+    price: 4500,
+    description: "매콤달콤한 국물 떡볶이 1인분",
+  },
+  {
+    id: "sundae",
+    name: "순대",
+    category: "분식",
+    price: 4000,
+    description: "간, 허파 곁들인 모둠 순대",
+  },
+  {
+    id: "lunchbox-bulgogi",
+    name: "불고기 도시락",
+    category: "도시락",
+    price: 7500,
+    description: "달콤짭짤한 불고기와 반찬 3종 도시락",
+  },
+  {
+    id: "lunchbox-chicken",
+    name: "치킨마요 도시락",
+    category: "도시락",
+    price: 7000,
+    description: "바삭한 치킨과 마요소스, 계란지단 도시락",
+  },
+  {
+    id: "fried-mandu",
+    name: "군만두",
+    category: "사이드",
+    price: 3500,
+    description: "바삭하게 튀긴 왕만두 6알",
+  },
+  {
+    id: "cola",
+    name: "콜라",
+    category: "음료",
+    price: 1500,
+    description: "탄산 음료 355ml",
+  },
+];
