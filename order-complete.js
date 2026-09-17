@@ -17,10 +17,10 @@ async function loadOrder() {
       .join("");
 
     container.innerHTML = `
-      <p>🎉 주문이 접수됐어요!</p>
-      <div class="order-id">${order.id}</div>
+      <p>🎉 결제가 완료되고 주문이 접수됐어요!</p>
+      <div class="order-id">주문번호 #${String(order.orderNumber).padStart(4, "0")}</div>
       <ul style="text-align:left; display:inline-block;">${itemsHtml}</ul>
-      <p><strong>총 금액: ${order.total.toLocaleString()}원</strong></p>
+      <p><strong>총 금액: ${order.total.toLocaleString()}원</strong> (${order.paymentMethod})</p>
       <p>${order.customerName}님, ${order.pickupTime ? order.pickupTime + " 픽업 예정" : "픽업 시간 미지정"}</p>
     `;
   } catch (err) {

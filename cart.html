@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>장바구니 - 테이크아웃</title>
+  <title>장바구니 - 리향</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -24,12 +24,33 @@
       <input type="text" name="customerName" placeholder="이름" required />
       <input type="tel" name="phone" placeholder="연락처 (010-0000-0000)" required />
       <input type="time" name="pickupTime" placeholder="픽업 희망 시간" />
+
+      <div class="payment-methods">
+        <label class="payment-method">
+          <input type="radio" name="paymentMethod" value="카드결제" checked />
+          <span>💳 카드결제</span>
+        </label>
+        <label class="payment-method">
+          <input type="radio" name="paymentMethod" value="간편결제" />
+          <span>📱 간편결제</span>
+        </label>
+      </div>
+      <p class="payment-notice">현재는 테스트용 모의결제예요. 실제 결제는 진행되지 않아요.</p>
+
       <p class="error-message" id="orderError" hidden></p>
-      <button type="submit" class="primary-button">주문하기</button>
+      <button type="submit" class="primary-button">결제하고 주문하기</button>
     </form>
   </main>
 
+  <div class="payment-overlay" id="paymentOverlay" hidden>
+    <div class="payment-overlay-box">
+      <div class="spinner"></div>
+      <p>결제 처리 중이에요...</p>
+    </div>
+  </div>
+
   <script src="cart-store.js"></script>
+  <script src="payment.js"></script>
   <script src="cart.js"></script>
 </body>
 </html>

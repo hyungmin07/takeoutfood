@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>매장 주문 현황 - 리향</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="no-print">
+    <a href="index.html">← 메뉴로</a>
+    <h1>매장 주문 현황</h1>
+    <button id="refreshBtn" class="icon-button" type="button">🔄</button>
+  </header>
+
+  <main class="no-print">
+    <form class="admin-login" id="loginForm">
+      <h2>관리자 로그인</h2>
+      <input type="password" id="adminPasswordInput" placeholder="관리자 비밀번호" required />
+      <p class="error-message" id="loginError" hidden></p>
+      <button type="submit" class="primary-button">입장</button>
+    </form>
+
+    <div id="orderBoard" hidden>
+      <p class="board-status" id="boardStatus"></p>
+      <div id="orderList"></div>
+    </div>
+  </main>
+
+  <div class="receipt" id="printReceipt"></div>
+
+  <script src="store.js"></script>
+</body>
+</html>
