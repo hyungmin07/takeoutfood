@@ -23,7 +23,17 @@
 
     <form class="order-form" id="orderForm" hidden>
       <input type="text" name="customerName" placeholder="이름" required />
-      <input type="tel" name="phone" placeholder="연락처 (010-0000-0000)" required />
+      <input
+        type="tel"
+        name="phone"
+        id="phoneInput"
+        placeholder="연락처 (010-0000-0000)"
+        inputmode="numeric"
+        maxlength="13"
+        pattern="01[0-9]-[0-9]{3,4}-[0-9]{4}"
+        title="010-0000-0000 형식으로 입력해주세요."
+        required
+      />
       <label class="field-label" for="pickupTimeInput">도착예정시간</label>
       <input type="time" id="pickupTimeInput" name="pickupTime" />
 

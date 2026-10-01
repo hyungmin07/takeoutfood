@@ -14,6 +14,7 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "0000";
 const SERVICE_ACCOUNT_PATH = path.join(__dirname, "firebase-service-account.json");
 const MENU_BY_ID = new Map(MENUS.map((menu) => [menu.id, menu]));
 const ORDER_STATUSES = ["접수됨", "준비중", "완료"];
+const PHONE_PATTERN = /^01[0-9]-[0-9]{3,4}-[0-9]{4}$/;
 
 let serviceAccount = null;
 if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
@@ -74,6 +75,9 @@ app.post("/api/orders", async (req, res) => {
   }
   if (!customerName || !phone) {
     return res.status(400).json({ error: "이름과 연락처를 입력해주세요." });
+  }
+  if (!PHONE_PATTERN.test(phone)) {
+    return res.status(400).json({ error: "연락처는 010-0000-0000 형식으로 입력해주세요." });
   }
 
   const orderItems = [];
