@@ -20,6 +20,23 @@ npm start
 `http://localhost:3000` 에서 확인할 수 있어요.
 매장 관리자 화면은 `http://localhost:3000/store.html` 이고, `.env`의 `ADMIN_PASSWORD`로 로그인해요.
 
+## 클라우드에 배포하기 (Render, 무료)
+
+손님이 집 밖에서도 접속하려면 서버를 인터넷에 올려야 해요. [Render](https://render.com)에 무료로 배포할 수 있어요.
+
+1. [render.com](https://render.com)에 접속해서 **GitHub 계정으로 회원가입/로그인**
+2. 오른쪽 위 **"New +"** 버튼 → **"Blueprint"** 선택
+3. 이 저장소(`hyungmin07/takeoutfood`)를 연결 (처음이면 "Configure GitHub App"으로 저장소 접근 권한을 허용해야 해요)
+4. 저장소 안의 `render.yaml`을 자동으로 읽어서 설정을 미리 채워줘요. 아래 환경변수 값을 입력:
+   - `ADMIN_PASSWORD`: 매장 관리자 화면 비밀번호 (원하는 값으로)
+   - `FIREBASE_SERVICE_ACCOUNT_JSON`: Firestore를 쓴다면 입력, 아니면 비워둬도 됨 (서버 메모리에 임시 저장)
+5. **"Apply"** 누르면 자동으로 빌드하고 배포돼요 (몇 분 걸려요)
+6. 배포가 끝나면 `https://rihyang-takeout.onrender.com` 같은 주소가 생겨요 — 이 주소가 손님용 주문 사이트예요
+
+⚠️ 무료 플랜은 15분간 접속이 없으면 서버가 잠들었다가, 다음 접속 때 다시 깨어나는 데 몇십 초 걸릴 수 있어요. 손님이 많아지면 유료 플랜(월 몇 달러)으로 올리면 항상 켜져있게 할 수 있어요.
+
+배포 후 메뉴를 바꾸고 싶으면 `menus.js`를 수정해서 GitHub에 올리면, Render가 자동으로 다시 배포해줘요.
+
 ## 결제 (현재는 모의결제)
 
 지금은 실제 PG(결제대행사) 없이 **모의결제**로 동작해요. 손님이 "결제하고 주문하기"를 누르면 `payment.js`의 `mockPayment()`가 잠깐의 처리 시간을 흉내낸 뒤 항상 성공 처리하고, 그 다음 주문이 서버에 저장돼요. 실제 돈은 오가지 않아요.
