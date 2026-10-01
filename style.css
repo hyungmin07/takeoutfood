@@ -1,12 +1,22 @@
 :root {
   --color-primary: #ff6b35;
-  --color-bg: #fafafa;
-  --color-text: #222;
-  --color-border: #e5e5e5;
+  --color-primary-dark: #e8551f;
+  --color-primary-soft: #fff1ea;
+  --color-bg: #f7f7f8;
+  --color-surface: #fff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #767680;
+  --color-border: #eceaea;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(20, 20, 20, 0.04), 0 1px 1px rgba(20, 20, 20, 0.03);
+  --shadow-md: 0 8px 24px rgba(20, 20, 20, 0.08);
 }
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* display:flex 등을 지정한 요소도 hidden 속성이 있으면 항상 감춰지도록 보장 */
@@ -16,9 +26,10 @@
 
 body {
   margin: 0;
-  font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   background: var(--color-bg);
   color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
 }
 
 header {
@@ -26,7 +37,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
@@ -34,110 +46,140 @@ header {
 }
 
 header h1 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
 header a {
   text-decoration: none;
   color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .cart-link {
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
+  line-height: 1;
 }
 
 .cart-badge {
   position: absolute;
-  top: -6px;
-  right: -10px;
+  top: -8px;
+  right: -12px;
   background: var(--color-primary);
   color: #fff;
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
+  font-weight: 700;
   padding: 2px 6px;
   min-width: 18px;
   text-align: center;
+  box-shadow: 0 2px 6px rgba(255, 107, 53, 0.45);
 }
 
 main {
   max-width: 720px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 16px 48px;
 }
 
 .category-tabs {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .category-tabs button {
   border: 1px solid var(--color-border);
-  background: #fff;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
   border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 0.9rem;
+  padding: 8px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.category-tabs button:hover {
+  border-color: var(--color-primary);
 }
 
 .category-tabs button.active {
-  background: var(--color-primary);
+  background: var(--color-text);
   color: #fff;
-  border-color: var(--color-primary);
+  border-color: var(--color-text);
 }
 
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
+  gap: 12px;
 }
 
 .menu-card {
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: var(--radius-md);
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .menu-card h3 {
   margin: 0;
-  font-size: 1.05rem;
-}
-
-.menu-card p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #666;
-  flex-grow: 1;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .menu-card .price {
-  font-weight: bold;
-  color: var(--color-primary);
+  font-weight: 700;
+  color: var(--color-text);
+  font-size: 0.95rem;
 }
 
 .menu-card button {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.menu-card button:hover {
   background: var(--color-primary);
   color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -145,27 +187,38 @@ main {
   flex-grow: 1;
 }
 
+.cart-item .info strong {
+  font-weight: 700;
+}
+
 .cart-item .qty-control {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .cart-item .qty-control button {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border: 1px solid var(--color-border);
-  background: #fff;
-  border-radius: 6px;
+  background: var(--color-surface);
+  border-radius: 50%;
   cursor: pointer;
+  font-weight: 700;
+  color: var(--color-text);
+  transition: border-color 0.15s ease;
+}
+
+.cart-item .qty-control button:hover {
+  border-color: var(--color-primary);
 }
 
 .cart-item .remove {
   background: none;
   border: none;
-  color: #999;
+  color: #b3b3b8;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
 .cart-summary {
@@ -175,38 +228,55 @@ main {
   display: flex;
   justify-content: space-between;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 800;
 }
 
 form.order-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 form.order-form input {
-  padding: 10px;
+  padding: 12px 14px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
+  background: var(--color-surface);
+}
+
+form.order-form input:focus {
+  outline: none;
+  border-color: var(--color-primary);
 }
 
 .primary-button {
   background: var(--color-primary);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: var(--radius-sm);
+  padding: 14px;
   font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
   margin-top: 8px;
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3);
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.primary-button:hover {
+  background: var(--color-primary-dark);
+}
+
+.primary-button:active {
+  transform: scale(0.99);
 }
 
 .empty-state {
   text-align: center;
-  color: #999;
-  padding: 40px 0;
+  color: var(--color-text-muted);
+  padding: 60px 0;
 }
 
 .error-message {
@@ -216,28 +286,30 @@ form.order-form input {
 
 .order-complete {
   text-align: center;
-  padding: 40px 20px;
+  padding: 48px 20px;
 }
 
 .order-complete .order-id {
   font-family: monospace;
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
   display: inline-block;
-  margin: 12px 0;
+  margin: 14px 0;
+  font-weight: 700;
 }
 
 .site-footer {
   text-align: center;
-  padding: 24px 0;
+  padding: 28px 0;
 }
 
 .site-footer a {
-  color: #aaa;
-  font-size: 0.8rem;
+  color: #c2c2c8;
+  font-size: 0.78rem;
   text-decoration: none;
+  font-weight: 500;
 }
 
 /* 결제 수단 선택 */
@@ -252,11 +324,14 @@ form.order-form input {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 10px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
   cursor: pointer;
   font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: all 0.15s ease;
 }
 
 .payment-method input {
@@ -265,20 +340,21 @@ form.order-form input {
 
 .payment-method:has(input:checked) {
   border-color: var(--color-primary);
-  background: #fff3ee;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
 }
 
 .payment-notice {
   margin: 0;
   font-size: 0.8rem;
-  color: #999;
+  color: var(--color-text-muted);
 }
 
 /* 결제 처리 오버레이 */
 .payment-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(20, 20, 20, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -286,16 +362,22 @@ form.order-form input {
 }
 
 .payment-overlay-box {
-  background: #fff;
-  border-radius: 12px;
-  padding: 32px 40px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 36px 44px;
   text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.payment-overlay-box p {
+  font-weight: 600;
+  margin: 0;
 }
 
 .spinner {
   width: 32px;
   height: 32px;
-  margin: 0 auto 12px;
+  margin: 0 auto 14px;
   border: 3px solid var(--color-border);
   border-top-color: var(--color-primary);
   border-radius: 50%;
@@ -311,44 +393,54 @@ form.order-form input {
 /* 매장 관리자 화면 */
 .admin-login {
   max-width: 320px;
-  margin: 60px auto;
+  margin: 72px auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: center;
 }
 
+.admin-login h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
 .admin-login input {
-  padding: 10px;
+  padding: 12px 14px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
 }
 
 .icon-button {
   border: none;
-  background: none;
-  font-size: 1.2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.05rem;
   cursor: pointer;
 }
 
 .board-status {
-  color: #888;
+  color: var(--color-text-muted);
   font-size: 0.85rem;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .order-card {
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-left: 4px solid #ccc;
-  border-radius: 10px;
-  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
   margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
 }
 
 .order-card.status-접수됨 {
-  border-left-color: #ff6b35;
+  border-left-color: var(--color-primary);
 }
 
 .order-card.status-준비중 {
@@ -366,38 +458,60 @@ form.order-form input {
   margin-bottom: 8px;
 }
 
+.order-card-head strong {
+  font-size: 1.05rem;
+}
+
 .status-badge {
-  font-size: 0.8rem;
-  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 11px;
   border-radius: 999px;
-  background: #f0f0f0;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.order-card.status-접수됨 .status-badge {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.order-card.status-준비중 .status-badge {
+  background: #fff4e0;
+  color: #b4780a;
+}
+
+.order-card.status-완료 .status-badge {
+  background: #e7f6ea;
+  color: #2e8b3f;
 }
 
 .order-card ul {
-  margin: 6px 0;
+  margin: 8px 0;
   padding-left: 18px;
   font-size: 0.9rem;
 }
 
 .order-card p {
   margin: 4px 0;
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
 }
 
 .order-card-actions {
   display: flex;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .order-card-actions button {
   flex: 1;
   border: 1px solid var(--color-border);
-  background: #fff;
-  border-radius: 8px;
-  padding: 8px;
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: 10px;
   font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
