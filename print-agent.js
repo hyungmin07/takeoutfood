@@ -76,7 +76,7 @@ async function printOrder(order) {
   printer.bold(true);
   printer.println(`합계 ${order.total.toLocaleString()}원`);
   printer.bold(false);
-  printer.println(`결제수단: ${order.paymentMethod} (${order.paymentStatus})`);
+  printer.println(`매장에서 결제받기 (${order.paymentStatus})`);
   printer.drawLine();
 
   printer.println(`${order.customerName} / ${order.phone}`);

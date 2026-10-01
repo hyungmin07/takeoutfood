@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "0000";
 const SERVICE_ACCOUNT_PATH = path.join(__dirname, "firebase-service-account.json");
 const MENU_BY_ID = new Map(MENUS.map((menu) => [menu.id, menu]));
-const PAYMENT_METHODS = new Set(["카드결제", "간편결제"]);
 const ORDER_STATUSES = ["접수됨", "준비중", "완료"];
 
 let serviceAccount = null;
@@ -68,16 +67,13 @@ app.get("/api/menus", (req, res) => {
 });
 
 app.post("/api/orders", async (req, res) => {
-  const { items, customerName, phone, pickupTime, paymentMethod } = req.body;
+  const { items, customerName, phone, pickupTime } = req.body;
 
   if (!Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: "장바구니가 비어있어요." });
   }
   if (!customerName || !phone) {
     return res.status(400).json({ error: "이름과 연락처를 입력해주세요." });
-  }
-  if (!PAYMENT_METHODS.has(paymentMethod)) {
-    return res.status(400).json({ error: "결제 수단을 선택해주세요." });
   }
 
   const orderItems = [];
@@ -102,10 +98,8 @@ app.post("/api/orders", async (req, res) => {
     customerName,
     phone,
     pickupTime: pickupTime || null,
-    paymentMethod,
-    // 모의결제: 클라이언트에서 결제 시뮬레이션을 통과해야만 이 API를 호출하므로 항상 결제완료로 기록.
-    // 실제 PG 연동 시에는 여기서 결제 승인 API 응답을 검증한 뒤에 결제완료 처리해야 함.
-    paymentStatus: "결제완료",
+    paymentMethod: "매장결제",
+    paymentStatus: "결제예정",
     status: "접수됨",
     createdAt: new Date().toISOString(),
   };

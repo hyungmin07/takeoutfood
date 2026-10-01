@@ -65,7 +65,7 @@ function printBill(order) {
     </table>
     <hr />
     <p class="receipt-total">합계 ${order.total.toLocaleString()}원</p>
-    <p>결제수단: ${order.paymentMethod} (${order.paymentStatus})</p>
+    <p>💰 매장에서 결제받기 (${order.paymentStatus})</p>
     <hr />
     <p>${order.customerName} / ${order.phone}</p>
     <p>${order.pickupTime ? "픽업 희망 " + order.pickupTime : "픽업 시간 미지정"}</p>
@@ -92,8 +92,8 @@ function renderOrders(orders) {
           </div>
           <ul>${itemsHtml}</ul>
           <p>${order.customerName} · ${order.phone}</p>
-          <p>${order.pickupTime ? "픽업 " + order.pickupTime : "픽업 시간 미지정"} · ${order.paymentMethod}</p>
-          <p><strong>${order.total.toLocaleString()}원</strong></p>
+          <p>${order.pickupTime ? "픽업 " + order.pickupTime : "픽업 시간 미지정"}</p>
+          <p class="payment-due"><strong>${order.total.toLocaleString()}원</strong> · 💰 매장결제 (${order.paymentStatus})</p>
           <div class="order-card-actions">
             ${nextStatus ? `<button class="advance-status">${STATUS_LABEL[order.status]}</button>` : ""}
             <button class="print-bill">빌지 인쇄</button>

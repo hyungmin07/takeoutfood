@@ -3,7 +3,6 @@ const cartSummary = document.getElementById("cartSummary");
 const cartTotalEl = document.getElementById("cartTotal");
 const orderForm = document.getElementById("orderForm");
 const orderError = document.getElementById("orderError");
-const paymentOverlay = document.getElementById("paymentOverlay");
 
 function renderCart() {
   const cart = getCart();
@@ -64,21 +63,15 @@ orderForm.addEventListener("submit", async (e) => {
 
   const formData = new FormData(orderForm);
   const cart = getCart();
-  const paymentMethod = formData.get("paymentMethod");
 
-  paymentOverlay.hidden = false;
+  const payload = {
+    items: cart.map((item) => ({ id: item.id, qty: item.qty })),
+    customerName: formData.get("customerName"),
+    phone: formData.get("phone"),
+    pickupTime: formData.get("pickupTime"),
+  };
+
   try {
-    const payment = await mockPayment({ amount: cartTotal(), method: paymentMethod });
-    if (!payment.success) throw new Error("결제에 실패했어요. 다시 시도해주세요.");
-
-    const payload = {
-      items: cart.map((item) => ({ id: item.id, qty: item.qty })),
-      customerName: formData.get("customerName"),
-      phone: formData.get("phone"),
-      pickupTime: formData.get("pickupTime"),
-      paymentMethod,
-    };
-
     const res = await fetch("/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -92,8 +85,6 @@ orderForm.addEventListener("submit", async (e) => {
   } catch (err) {
     orderError.textContent = err.message;
     orderError.hidden = false;
-  } finally {
-    paymentOverlay.hidden = true;
   }
 });
 
