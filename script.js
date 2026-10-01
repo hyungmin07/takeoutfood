@@ -31,7 +31,6 @@ function renderMenus() {
       (menu) => `
         <div class="menu-card">
           <h3>${menu.name}</h3>
-          <p>${menu.description}</p>
           <span class="price">${menu.price.toLocaleString()}원</span>
           <button data-id="${menu.id}">담기</button>
         </div>
