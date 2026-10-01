@@ -24,7 +24,8 @@
     <form class="order-form" id="orderForm" hidden>
       <input type="text" name="customerName" placeholder="이름" required />
       <input type="tel" name="phone" placeholder="연락처 (010-0000-0000)" required />
-      <input type="time" name="pickupTime" placeholder="픽업 희망 시간" />
+      <label class="field-label" for="pickupTimeInput">도착예정시간</label>
+      <input type="time" id="pickupTimeInput" name="pickupTime" />
 
       <p class="payment-notice">💰 결제는 매장에서 픽업하실 때 해주세요.</p>
 

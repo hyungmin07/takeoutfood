@@ -256,6 +256,13 @@ form.order-form input:focus {
   border-color: var(--color-primary);
 }
 
+.field-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin: 4px 2px -4px;
+}
+
 .primary-button {
   background: var(--color-primary);
   color: #fff;
