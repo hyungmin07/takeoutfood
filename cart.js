@@ -3,6 +3,18 @@ const cartSummary = document.getElementById("cartSummary");
 const cartTotalEl = document.getElementById("cartTotal");
 const orderForm = document.getElementById("orderForm");
 const orderError = document.getElementById("orderError");
+const phoneInput = document.getElementById("phoneInput");
+
+phoneInput.addEventListener("input", () => {
+  const digits = phoneInput.value.replace(/\D/g, "").slice(0, 11);
+  let formatted = digits;
+  if (digits.length > 3 && digits.length <= 7) {
+    formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+  } else if (digits.length > 7) {
+    formatted = `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+  }
+  phoneInput.value = formatted;
+});
 
 function renderCart() {
   const cart = getCart();

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>장바구니 - 테이크아웃</title>
+  <title>장바구니 - 리향</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -22,8 +23,22 @@
 
     <form class="order-form" id="orderForm" hidden>
       <input type="text" name="customerName" placeholder="이름" required />
-      <input type="tel" name="phone" placeholder="연락처 (010-0000-0000)" required />
-      <input type="time" name="pickupTime" placeholder="픽업 희망 시간" />
+      <input
+        type="tel"
+        name="phone"
+        id="phoneInput"
+        placeholder="연락처 (010-0000-0000)"
+        inputmode="numeric"
+        maxlength="13"
+        pattern="01[0-9]-[0-9]{3,4}-[0-9]{4}"
+        title="010-0000-0000 형식으로 입력해주세요."
+        required
+      />
+      <label class="field-label" for="pickupTimeInput">도착예정시간</label>
+      <input type="time" id="pickupTimeInput" name="pickupTime" />
+
+      <p class="payment-notice">💰 결제는 매장에서 픽업하실 때 해주세요.</p>
+
       <p class="error-message" id="orderError" hidden></p>
       <button type="submit" class="primary-button">주문하기</button>
     </form>
